@@ -1,0 +1,6 @@
+{
+  "name": "Warm Paper Cloud Advisor",
+  "description": "Intelligent multi-cloud advisor that analyzes your workload and recommends the best-in-class cloud provider with architectural breakdown and interactive comparisons.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
