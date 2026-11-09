@@ -38,6 +38,14 @@ export interface PrimaryRecommendation {
   potentialWatchouts: string[];
   deploymentQuickstartCmd: string;
   terraformSnippet?: string;
+  serverHardwareSizing?: {
+    instanceFamily: string;
+    vCpus: number;
+    ramGb: number;
+    storage: string;
+    networkThroughput: string;
+    gpuSupport?: string;
+  };
 }
 
 interface ProviderHeroCardProps {
@@ -224,6 +232,55 @@ export const ProviderHeroCard: React.FC<ProviderHeroCardProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Assigned Server Hardware & RAM Sizing */}
+      {recommendation.serverHardwareSizing && (
+        <div className="my-4 sm:my-6 p-4 rounded bg-[#EFECE6] border-[1.5px] border-[#1E232A] shadow-[2px_2px_0px_#1E232A]">
+          <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-[#1E232A]/20">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded bg-[#2D5A46] text-[#FAF9F5] flex items-center justify-center font-bold text-xs">
+                <Cpu className="w-4 h-4" />
+              </div>
+              <h3 className="font-display text-xs sm:text-sm font-bold uppercase text-[#1E232A] tracking-wider">
+                Assigned Server & RAM Hardware Sizing
+              </h3>
+            </div>
+            <span className="font-mono text-xs font-bold text-[#2D5A46] bg-[#2D5A46]/10 px-2.5 py-0.5 rounded border border-[#2D5A46]/30">
+              Optimal Workload Fit
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div className="bg-[#FAF9F5] p-2.5 rounded border border-[#1E232A]/20">
+              <span className="text-[10px] font-mono text-[#565E69] block">Instance / Family</span>
+              <span className="font-display font-bold text-sm text-[#1E232A] truncate block">
+                {recommendation.serverHardwareSizing.instanceFamily}
+              </span>
+            </div>
+
+            <div className="bg-[#FAF9F5] p-2.5 rounded border border-[#1E232A]/20">
+              <span className="text-[10px] font-mono text-[#565E69] block">vCPUs & RAM</span>
+              <span className="font-display font-bold text-sm text-[#2D5A46] tabular-nums block">
+                {recommendation.serverHardwareSizing.vCpus} vCPUs • {recommendation.serverHardwareSizing.ramGb} GB RAM
+              </span>
+            </div>
+
+            <div className="bg-[#FAF9F5] p-2.5 rounded border border-[#1E232A]/20">
+              <span className="text-[10px] font-mono text-[#565E69] block">Storage Tier</span>
+              <span className="font-display font-bold text-xs sm:text-sm text-[#1E232A] truncate block">
+                {recommendation.serverHardwareSizing.storage}
+              </span>
+            </div>
+
+            <div className="bg-[#FAF9F5] p-2.5 rounded border border-[#1E232A]/20">
+              <span className="text-[10px] font-mono text-[#565E69] block">Network & GPU</span>
+              <span className="font-display font-bold text-xs sm:text-sm text-[#1E232A] truncate block">
+                {recommendation.serverHardwareSizing.networkThroughput}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Recommended Stack Topology (2x2 on Mobile) */}
       <div className="my-4 sm:my-6 pt-4 border-t border-[#1E232A]/20">

@@ -157,6 +157,18 @@ Return a structured JSON object according to the requested schema.`;
                   },
                   required: ['compute', 'database', 'storage', 'networking']
                 },
+                serverHardwareSizing: {
+                  type: Type.OBJECT,
+                  properties: {
+                    instanceFamily: { type: Type.STRING, description: 'Exact server model / instance type family (e.g. c7g.2xlarge, c2-standard-8, AX52)' },
+                    vCpus: { type: Type.INTEGER, description: 'Number of vCPUs' },
+                    ramGb: { type: Type.INTEGER, description: 'RAM in Gigabytes' },
+                    storage: { type: Type.STRING, description: 'Storage type and capacity' },
+                    networkThroughput: { type: Type.STRING, description: 'Network throughput and bandwidth' },
+                    gpuSupport: { type: Type.STRING, description: 'GPU hardware if required for AI/ML workloads' }
+                  },
+                  required: ['instanceFamily', 'vCpus', 'ramGb', 'storage', 'networkThroughput']
+                },
                 estimatedMonthlyCostInr: { type: Type.INTEGER, description: 'Total estimated monthly cost in Indian Rupees' },
                 costBreakdown: {
                   type: Type.ARRAY,

@@ -98,6 +98,14 @@ Unlike competing providers that introduce steep IAM configuration overhead or hi
         'High performance regional presence in key latency zones (Mumbai, Singapore, Frankfurt, US East).'
       ],
       recommendedArchitecture: arch,
+      serverHardwareSizing: {
+        instanceFamily: chosenId === 'aws' ? 'c7g.2xlarge (ARM Graviton3)' : chosenId === 'gcp' ? 'c2-standard-8 (Compute Optimized)' : chosenId === 'hetzner' ? 'AX52 Dedicated AMD EPYC' : chosenId === 'supabase' ? 'Pro Tier Dedicated Postgres' : 'Standard Worker Isolate Cluster',
+        vCpus: 8,
+        ramGb: 32,
+        storage: '160 GB NVMe High-IOPS SSD',
+        networkThroughput: '10 Gbps Dedicated Interconnect',
+        gpuSupport: isAiMl ? 'NVIDIA L4 Tensor Core (Recommended for AI inference)' : 'None required'
+      },
       estimatedMonthlyCostInr: chosenId === 'cloudflare' ? 4200 : chosenId === 'supabase' ? 3800 : chosenId === 'hetzner' ? 5600 : 18500,
       costBreakdown: [
         { item: 'Core Compute / Function Execution', costInr: chosenId === 'hetzner' ? 3200 : 8500, note: 'Sized for baseline + burst headroom' },
